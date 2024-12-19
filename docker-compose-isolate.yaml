@@ -13,7 +13,7 @@ services:
             - ./logs:/~/TelegramBotDockerTmpl/logs
         restart: on-failure
         networks:
-            - app_network
+            - first_network
         deploy:
             resources:
                 limits:
@@ -27,7 +27,7 @@ services:
         ports:
             - "127.0.0.1:6379:6379"
         networks:
-            - app_network
+            - second_network
         deploy:
             resources:
                 limits:
@@ -37,5 +37,7 @@ services:
                     cpus: '0.05'
                     memory: 64M
 networks:
-    app_network:
+    first_network:
+        driver: bridge
+    second_network:
         driver: bridge
